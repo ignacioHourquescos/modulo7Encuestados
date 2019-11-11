@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "js"
+		},
+		{
+			"path": "img"
+		},
+		{
+			"path": "css"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.panel.defaultLocation": "right"
+	}
+}
