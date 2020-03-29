@@ -67,10 +67,14 @@ VistaAdministrador.prototype = {
 
 
             e.botonBorrarPregunta.click(function(){      
-                  console.log("boton borrar");                                                   //AGREGADO
-                  var id = parseInt($('.list-group-item.active').attr('id'));
-                  console.log(id);                               //AGREGADO
+                  console.log("borrar pregutna")
+                  var id = parseInt($('.list-group-item.active').attr('id'));                               //AGREGADO
                   contexto.controlador.borrarPregunta(id);                                                  //AGREGADO
+            });
+
+            e.borrarTodo.click(function(){                                    
+                  console.log("borrar Todo");                                                               //AGREGADO            
+                  contexto.controlador.borrarTodo();                                                   //AGREGADO
             })
         //asociar el resto de los botones a eventos
       },

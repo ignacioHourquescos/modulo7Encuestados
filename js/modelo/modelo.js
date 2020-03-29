@@ -14,7 +14,6 @@ Modelo.prototype = {
             return ultimoId;                                                              //AGREGADO
       },
 
-  
       agregarPregunta: function(nombre, respuestas) {                                    //se agrega una pregunta dado un nombre y sus respuestas
             var id = this.obtenerUltimoId();
             id++;
@@ -24,11 +23,15 @@ Modelo.prototype = {
             this.preguntaAgregada.notificar();
       },
 
-      borrarPregunta: function(id){                                                         //AGREGADO
-            this.preguntas=this.preguntas.splice(id,1);
+      borrarPregunta: function(id){                                        //AGREGADO
+            this.preguntas.splice(id,1);
             this.preguntaEliminada.notificar();                                             //AGREGADO
       },                                                                                  //AGREGADO                                          
 
+      borrarTodo: function(){
+            this.preguntas.splice(0, this.preguntas.length);
+            this.preguntaEliminada.notificar();
+      },
  
       guardar: function(){                                                               //se guardan las preguntas //alis aca va localstorage
       },
