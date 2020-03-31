@@ -1,40 +1,42 @@
+/*
+ * Modelo
+ */
 var Modelo = function() {
-      this.preguntas = [];
-      this.ultimoId = 0;
-      this.preguntaAgregada = new Evento(this);
-      this.preguntaEliminada = new Evento(this);                                           //AGREGADO                                          
+  this.preguntas = [];
+  this.ultimoId = 0;
 
+  //inicializacion de eventos
+  this.preguntaAgregada = new Evento(this);
 };
 
 Modelo.prototype = {
-  
-      //se obtiene el id mÃ¡s grande asignado a una pregunta
-      obtenerUltimoId: function() {
-            var ultimoId=this.preguntas.length-1;                                           //AGREGADO
-            return ultimoId;                                                              //AGREGADO
-      },
+  //se obtiene el id más grande asignado a una pregunta
+  obtenerUltimoId: function() {
+    if (this.preguntas.length === 0){
+      //arreglo vacio
+      return 0;
+      }
+    else {
+      //recupero el id de la ultima posicion, como se agregan ordenados siempre es el mayor
+      return this.preguntas[this.preguntas.length-1].id;
+  }
+  },
 
-      agregarPregunta: function(nombre, respuestas) {                                    //se agrega una pregunta dado un nombre y sus respuestas
-            var id = this.obtenerUltimoId();
-            id++;
-            var nuevaPregunta = {'textoPregunta': nombre, 'id': id, 'cantidadPorRespuesta': respuestas};
-            this.preguntas.push(nuevaPregunta);
-            this.guardar();
-            this.preguntaAgregada.notificar();
-      },
+  //se agrega una pregunta dado un nombre y sus respuestas
+  agregarPregunta: function(nombre, respuestas) {
+    var id = this.obtenerUltimoId();
+    id++;
+    var nuevaPregunta = {'textoPregunta': nombre, 'id': id, 'cantidadPorRespuesta': respuestas};
+    this.preguntas.push(nuevaPregunta);
+    //------------DE ACA PAR AABAJO CODIGO AGREGADO---------------------
+    
 
-      borrarPregunta: function(id){                                        //AGREGADO
-            this.preguntas.splice(id,1);
-            this.preguntaEliminada.notificar();                                             //AGREGADO
-      },                                                                                  //AGREGADO                                          
+    //------------DE ACA PARA ARRIBA CODIGO AGRRGADO------------------
+    this.guardar();
+    this.preguntaAgregada.notificar();
+  },
 
-      borrarTodo: function(){
-            this.preguntas.splice(0, this.preguntas.length);
-            this.preguntaEliminada.notificar();
-      },
- 
-      guardar: function(){                                                               //se guardan las preguntas //alis aca va localstorage
-      },
+  //se guardan las preguntas
+  guardar: function(){
+  },
 };
-
-
